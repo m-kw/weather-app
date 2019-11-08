@@ -1,0 +1,27 @@
+.temp-wrapper {
+  position: relative;
+
+  .temp {
+    font-weight: normal;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .temp-hover {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translate(-40%, 7%);
+    width: 30%;
+    background-color: #4bcffa;
+    color: #808e9b;
+    border-radius: 10px;
+  }
+
+  &:hover .temp-hover {
+    display: block;
+  }
+}

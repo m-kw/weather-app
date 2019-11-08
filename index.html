@@ -4,22 +4,25 @@
   <meta charset="utf-8">
   <meta name="wievport" content="width=device-width, initial-scale=1.0">
   <title>Weather App</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap&subset=latin-ext" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <div id="weather" class="container">
-    <div id="location" class="location">
+    <div id="location" class="location"></div>
+
+    <div class="temp-wrapper">
+      <h1 id="temp" class="temp"></h1>
+      <div class="temp-hover">
+        <p>Click temperature to change between Ceslsius and Fahrenheit.</p>
+      </div>
     </div>
 
-    <h1 id="temp" class="temp">15</h1>
+    <div id="weather-pic" class="weather-pic"></div>
 
-    <div id="weather-pic"></div>
-
-    <div id="description" class="description">
-      <p>cloudy</p>
-    </div>
+    <div id="description" class="description"></div>
   </div>
 
   <script src="js/script.js"></script>
