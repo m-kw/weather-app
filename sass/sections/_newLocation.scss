@@ -15,6 +15,10 @@
     &:hover {
       color: #d2dae2;
     }
+
+    &.fa-search:hover {
+      cursor: pointer;
+    }
   }
 
   form {
