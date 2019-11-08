@@ -17,7 +17,7 @@
     "build-dev:sass": "node-sass --output-style expanded --source-map true -o css sass",
     "watch": "npm-run-all build:* build-dev -p watch:*",
     "watch:browsersync": "browser-sync start --server --files \"css/*.css\" \"*.html\" \"js/*.js\"",
-    "watch:sassprefixer": "onchange sass/*.scss -- npm run build-dev"
+    "watch:sassprefixer": "onchange sass/**/*.scss -- npm run build-dev"
   },
   "keywords": [],
   "author": "",
@@ -30,7 +30,8 @@
     "node-sass": "^4.12.0",
     "npm-run-all": "^4.1.5",
     "nu-html-checker": "^0.1.0",
-    "onchange": "^6.0.0"
+    "onchange": "^6.0.0",
+    "request": "^2.88.0"
   },
   "dependencies": {}
 }
