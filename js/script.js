@@ -12,8 +12,8 @@
         //console.log('position', position);
         let lat = position.coords.latitude;
         let lon = position.coords.longitude;
-        console.log('lat', lat);
-        console.log('lon', lon);
+        // console.log('lat', lat);
+        // console.log('lon', lon);
 
         getCurrentWeather(lat, lon);
       });
@@ -25,9 +25,9 @@
   function getCurrentWeather(lat, lon) {
     const key = 'b97ff9652ee99d6757032c1c09248e16';
     const url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=' + key;
-    console.log('url', url);
-    console.log('weather lat', lat);
-    console.log('weather lon', lon);
+    // console.log('url', url);
+    // console.log('weather lat', lat);
+    // console.log('weather lon', lon);
 
     fetch(url)
       .then(function(response) {
@@ -48,7 +48,10 @@
 
     const description = document.getElementById('description');
     description.innerHTML = data.weather[0].description;
-    
+
+    const picture = document.getElementById('weather-pic');
+    const iconId = data.weather[0].icon;
+    picture.innerHTML = '<img src="http://openweathermap.org/img/wn/' + iconId + '@2x.png">';
   }
 
 }
