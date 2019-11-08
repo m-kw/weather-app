@@ -343,8 +343,6 @@ template {
 
 body {
   margin: 0;
-  width: 100vw;
-  height: 100vh;
   font-size: 16px;
   color: #d2dae2;
   font-family: "Raleway", sans-serif;
@@ -353,8 +351,8 @@ body {
 }
 
 .container {
-  width: 75%;
-  margin: 100px auto;
+  width: 80%;
+  margin: 200px auto;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -397,5 +395,44 @@ body {
 
 .weather-pic {
   margin: 20px auto;
+}
+
+.newLocation {
+  margin-top: 150px;
+  padding: 10px;
+  background-color: #ffa801;
+  color: #808e9b;
+  font-size: 20px;
+}
+
+.newLocation p {
+  margin-bottom: 10px;
+}
+
+.newLocation i {
+  margin: 10px;
+}
+
+.newLocation i:hover {
+  color: #d2dae2;
+}
+
+.newLocation form {
+  margin: 10px;
+  padding: 15px;
+}
+
+.newLocation form label {
+  padding: 15px;
+  background-color: #ffc048;
+  width: 100%;
+}
+
+.newLocation form label input {
+  padding: 10px;
+  outline: none;
+  border: none;
+  width: 80%;
+  font-size: 16px;
 }
 /*# sourceMappingURL=style.css.map */

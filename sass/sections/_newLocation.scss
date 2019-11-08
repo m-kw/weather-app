@@ -1,0 +1,38 @@
+.newLocation {
+  margin-top: 150px;
+  padding: 10px;
+  background-color: #ffa801;
+  color: #808e9b;
+  font-size: 20px;
+
+  p {
+    margin-bottom: 10px;
+  }
+
+  i {
+    margin: 10px;
+
+    &:hover {
+      color: #d2dae2;
+    }
+  }
+
+  form {
+    margin: 10px;
+    padding: 15px;
+
+    label {
+      padding: 15px;
+      background-color: #ffc048;
+      width: 100%;
+
+      input {
+        padding: 10px;
+        outline: none;
+        border: none;
+        width: 80%;
+        font-size: 16px;
+      }
+    }
+  }
+}

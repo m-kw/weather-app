@@ -4,8 +4,6 @@
 
 body {
   margin: 0;
-  width: 100vw;
-  height: 100vh;
   font-size: 16px;
   color: $font-color;
   font-family: $font-family;
@@ -14,8 +12,8 @@ body {
 }
 
 .container {
-  width: 75%;
-  margin: 100px auto;
+  width: 80%;
+  margin: 200px auto;
   display: flex;
   flex-direction: column;
 }
