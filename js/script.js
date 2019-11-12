@@ -53,7 +53,7 @@
         state.description = data.weather[0].description;
         state.iconId = data.weather[0].icon;
 
-        // showWeather();
+        showWeather();
       })
   }
 
@@ -115,9 +115,31 @@
           state.description = newData.weather[0].description;
           state.iconId = newData.weather[0].icon;
 
-          // showWeather();
+          showWeather();
         })
-        .catch(err => alert('No such city'))
+        .catch(error => alert('No such city'))
+    });
+
+    input.addEventListener('keydown', function(e) {
+      if (e.keyCode === 13) {
+        e.preventDefault();
+
+        const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + input.value + '&appid=' + apiKey;
+
+        fetch(url)
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(newData) {
+            console.log('data', newData);
+            state.location = input.value;
+            state.temp = newData.main.temp;
+            state.description = newData.weather[0].description;
+            state.iconId = newData.weather[0].icon;
+
+            showWeather();
+          })
+      }
     });
   }
 
