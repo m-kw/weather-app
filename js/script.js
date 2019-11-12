@@ -25,8 +25,8 @@
         // console.log('position', position);
         state.lat = position.coords.latitude;
         state.lon = position.coords.longitude;
-         // console.log('lat', state.lat);
-         // console.log('lon', state.lon);
+        // console.log('lat', state.lat);
+        // console.log('lon', state.lon);
 
         getCurrentWeather(state.lat, state.lon);
       });
@@ -37,7 +37,7 @@
 
   function getCurrentWeather(lat, lon) {
     const url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey;
-     // console.log('url', url);
+    // console.log('url', url);
     // console.log('weather lat', lat);
     // console.log('weather lon', lon);
 
@@ -54,7 +54,7 @@
         state.iconId = data.weather[0].icon;
 
         showWeather();
-      })
+      });
   }
 
   function showWeather() {
@@ -117,7 +117,7 @@
 
           showWeather();
         })
-        .catch(error => alert('No such city'))
+        .catch(error => alert('No such city'));
     });
 
     input.addEventListener('keydown', function(e) {
@@ -138,7 +138,7 @@
             state.iconId = newData.weather[0].icon;
 
             showWeather();
-          })
+          });
       }
     });
   }
