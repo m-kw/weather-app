@@ -12,47 +12,38 @@
   init();
 
   function init() {
-    getCurrentLocation();
-    // getCurrentWeather();
+    getCurrentLocation().then(function() {
+      getCurrentWeather();
+    });
     initActions();
     // showWeather();
   }
 
   function getCurrentLocation() {
-    if ('geolocation' in navigator) {
-      // console.log('loc available');
-      navigator.geolocation.getCurrentPosition(function(position) {
-        // console.log('position', position);
-        state.lat = position.coords.latitude;
-        state.lon = position.coords.longitude;
-        // console.log('lat', state.lat);
-        // console.log('lon', state.lon);
+    return new Promise(function(resolve, reject) {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
 
-        getCurrentWeather(state.lat, state.lon);
-      });
-    } else {
-      console.log('loc unavailable');
-    }
+          state.lat = position.coords.latitude;
+          state.lon = position.coords.longitude;
+
+          return resolve();
+        });
+      } else {
+        return reject('loc unavailable');
+      }
+    });
   }
 
-  function getCurrentWeather(lat, lon) {
-    const url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + lon + '&appid=' + apiKey;
-    // console.log('url', url);
-    // console.log('weather lat', lat);
-    // console.log('weather lon', lon);
+  function getCurrentWeather() {
+    const url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + state.lat + '&lon=' + state.lon + '&appid=' + apiKey;
 
     fetch(url)
       .then(function(response) {
         return response.json();
       })
       .then(function(data) {
-        console.log('data', data);
-
-        state.location = data.name;
-        state.temp = data.main.temp;
-        state.description = data.weather[0].description;
-        state.iconId = data.weather[0].icon;
-
+        setState(data);
         showWeather();
       });
   }
@@ -102,45 +93,43 @@
     });
 
     search.addEventListener('click', function() {
-      const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + input.value + '&appid=' + apiKey;
-
-      fetch(url)
+      const newUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + input.value + '&appid=' + apiKey;
+      
+      fetch(newUrl)
         .then(function(response) {
           return response.json();
         })
         .then(function(newData) {
-          console.log('data', newData);
-          state.location = input.value;
-          state.temp = newData.main.temp;
-          state.description = newData.weather[0].description;
-          state.iconId = newData.weather[0].icon;
-
+          setState(newData);
           showWeather();
         })
-        .catch(error => alert('No such city'));
+        .catch(error => alert('No such city', error));
     });
 
     input.addEventListener('keydown', function(e) {
+      const newUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + input.value + '&appid=' + apiKey;
+
       if (e.keyCode === 13) {
         e.preventDefault();
 
-        const url = 'https://api.openweathermap.org/data/2.5/weather?q=' + input.value + '&appid=' + apiKey;
-
-        fetch(url)
+        fetch(newUrl)
           .then(function(response) {
             return response.json();
           })
           .then(function(newData) {
-            console.log('data', newData);
-            state.location = input.value;
-            state.temp = newData.main.temp;
-            state.description = newData.weather[0].description;
-            state.iconId = newData.weather[0].icon;
-
+            setState(newData);
             showWeather();
           });
       }
     });
+  }
+
+  function setState(data) {
+    console.log('data', data);
+    state.location = data.name;
+    state.temp = data.main.temp;
+    state.description = data.weather[0].description;
+    state.iconId = data.weather[0].icon;
   }
 
 }
