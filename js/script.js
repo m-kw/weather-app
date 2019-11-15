@@ -14,6 +14,7 @@
   function init() {
     getCurrentLocation().then(function() {
       getCurrentWeather();
+      getAndShowWeather();
     });
     initActions();
     // showWeather();
@@ -38,11 +39,12 @@
   function getCurrentWeather() {
     const url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + state.lat + '&lon=' + state.lon + '&appid=' + apiKey;
 
-    fetch(url)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(data) {
+    return fetch(url).then(response => response.json());
+  }
+
+  function getAndShowWeather() {
+    getCurrentWeather()
+      .then(data => {
         setState(data);
         showWeather();
       });
@@ -76,14 +78,11 @@
   function initActions() {
     tempDom.addEventListener('click', function() {
       tempDom.innerHTML = tempDom.innerHTML.replace('\xB0C', '');
-      // console.log('tempDom', tempDom.innerHTML);
       const kTemp = state.temp;
 
       const cTemp = kelvinToCelsius(kTemp);
-      // console.log('cTemp', cTemp);
 
       const fTemp = kelvinToFahrenheit(kTemp);
-      // console.log('fTemp', fTemp);
 
       if (tempDom.innerHTML == cTemp) {
         tempDom.innerHTML = fTemp + '&degF';
@@ -94,7 +93,7 @@
 
     search.addEventListener('click', function() {
       const newUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + input.value + '&appid=' + apiKey;
-      
+
       fetch(newUrl)
         .then(function(response) {
           return response.json();
